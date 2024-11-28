@@ -202,7 +202,9 @@
           default = acmsl-licdata-artifact-infrastructure-python312;
           acmsl-licdata-artifact-infrastructure-python38 =
             shared.devShell-for {
-              banner = "${packages.acmsl-licdata-artifact-infrastructure-python38}/bin/banner.sh";
+              banner = "${
+                  pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38
+                }/bin/banner.sh";
               extra-namespaces = "org";
               nixpkgs-release = nixpkgsRelease;
               package = packages.acmsl-licdata-artifact-infrastructure-python38;
@@ -215,7 +217,9 @@
             };
           acmsl-licdata-artifact-infrastructure-python39 =
             shared.devShell-for {
-              banner = "${packages.acmsl-licdata-artifact-infrastructure-python39}/bin/banner.sh";
+              banner = "${
+                  pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python39
+                }/bin/banner.sh";
               extra-namespaces = "org";
               nixpkgs-release = nixpkgsRelease;
               package =
@@ -229,7 +233,9 @@
             };
           acmsl-licdata-artifact-infrastructure-python310 =
             shared.devShell-for {
-              banner = "${packages.acmsl-licdata-artifact-infrastructure-python310}/bin/banner.sh";
+              banner = "${
+                  pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python310
+                }/bin/banner.sh";
               extra-namespaces = "org";
               nixpkgs-release = nixpkgsRelease;
               package =
@@ -243,7 +249,9 @@
             };
           acmsl-licdata-artifact-infrastructure-python311 =
             shared.devShell-for {
-              banner = "${packages.acmsl-licdata-artifact-infrastructure-python311}/bin/banner.sh";
+              banner = "${
+                  pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python311
+                }/bin/banner.sh";
               extra-namespaces = "org";
               nixpkgs-release = nixpkgsRelease;
               package =
@@ -257,7 +265,9 @@
             };
           acmsl-licdata-artifact-infrastructure-python312 =
             shared.devShell-for {
-              banner = "${packages.acmsl-licdata-artifact-infrastructure-python312}/bin/banner.sh";
+              banner = "${
+                  pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312
+                }/bin/banner.sh";
               extra-namespaces = "org";
               nixpkgs-release = nixpkgsRelease;
               package =
