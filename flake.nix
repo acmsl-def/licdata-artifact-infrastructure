@@ -144,7 +144,7 @@
                 (map (item: ''"${item}"'') maintainers);
               azureFunctions = azure-functions.version;
               desc = description;
-              inherit homepage pname pythonMajorMinorVersion pythonpackage
+              inherit homepage pname pythonMajorMinorVersion package
                 version;
               acmslLicdataArtifactEvents = acmsl-licdata-artifact-events.version;
               acmslLicdataArtifactEventsInfrastructure = acmsl-licdata-artifact-events-infrastructure.version;
