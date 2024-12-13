@@ -19,6 +19,15 @@
 {
   description = "Nix flake for acmsl/licdata-artifact-infrastructure";
   inputs = rec {
+    acmsl-licdata-artifact-domain = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:acmsl-def/licdata-artifact-domain/0.0.26";
+    };
     acmsl-licdata-artifact-events = {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
@@ -26,7 +35,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-events/0.0.17";
+      url = "github:acmsl-def/licdata-artifact-events/0.0.18";
     };
     acmsl-licdata-artifact-events-infrastructure = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,12 +45,12 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:acmsl-def/licdata-artifact-events-infrastructure/0.0.19";
+      url = "github:acmsl-def/licdata-artifact-events-infrastructure/0.0.20";
     };
     azure-functions = {
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
-      url = "github:rydnr/nix-flakes/azure-functions-1.21.3.0?dir=azure-functions";
+      url = "github:rydnr/nix-flakes/azure-functions-1.21.3.2?dir=azure-functions";
     };
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     nixpkgs.url = "github:NixOS/nixpkgs/24.05";
@@ -52,7 +61,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-artifact-def/events-infrastructure/0.0.66";
+      url = "github:pythoneda-shared-artifact-def/events-infrastructure/0.0.67";
     };
     pythoneda-shared-pythonlang-banner = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -64,7 +73,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.102";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.103";
     };
     pythoneda-shared-pythonlang-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -73,7 +82,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-def/infrastructure/0.0.78";
+      url = "github:pythoneda-shared-pythonlang-def/infrastructure/0.0.79";
     };
     pythoneda-shared-pythonlang-artf-domain = {
       inputs.flake-utils.follows = "flake-utils";
@@ -82,7 +91,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/domain/0.0.76";
+      url = "github:pythoneda-shared-pythonlang-artf-def/domain/0.0.77";
     };
     pythoneda-shared-pythonlang-artf-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -93,7 +102,25 @@
         "pythoneda-shared-pythonlang-domain";
       inputs.pythoneda-shared-pythonlang-infrastructure.follows =
         "pythoneda-shared-pythonlang-infrastructure";
-      url = "github:pythoneda-shared-pythonlang-artf-def/infrastructure/0.0.71";
+      url = "github:pythoneda-shared-pythonlang-artf-def/infrastructure/0.0.72";
+    };
+    pythoneda-shared-runtime-secrets-events = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:pythoneda-shared-runtime-def/secrets-events/0.0.5";
+    };
+    pythoneda-shared-runtime-secrets-events-infrastructure = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:pythoneda-shared-runtime-def/secrets-events-infrastructure/0.0.4";
     };
   };
   outputs = inputs:
@@ -102,8 +129,8 @@
       let
         org = "acmsl";
         repo = "licdata-artifact-infrastructure";
-        version = "0.0.3";
-        sha256 = "164q3nn9ss3kbpsvyh2704x1vg7x4z1dd86f8chy0bzhgaansaxb";
+        version = "0.0.4";
+        sha256 = "0klmx9rcgmdbr50y0wj3i1xbqpsa36inagd033qz0hw6p39x6pdm";
         pname = "${org}-${repo}";
         pythonpackage = "org.acmsl.artifact.licdata.infrastructure";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
@@ -119,13 +146,21 @@
         nixpkgsRelease =
           builtins.replaceStrings [ "\n" ] [ "" ] "nixpkgs-${nixpkgsVersion}";
         shared = import "${pythoneda-shared-pythonlang-banner}/nix/shared.nix";
-        acmsl-licdata-artifact-infrastructure-for = { azure-functions, acmsl-licdata-artifact-events, acmsl-licdata-artifact-events-infrastructure, python
+        acmsl-licdata-artifact-infrastructure-for = {
+            azure-functions
+          , acmsl-licdata-artifact-domain
+          , acmsl-licdata-artifact-events
+          , acmsl-licdata-artifact-events-infrastructure
+          , python
           , pythoneda-shared-artifact-events-infrastructure
           , pythoneda-shared-pythonlang-banner
           , pythoneda-shared-pythonlang-domain
           , pythoneda-shared-pythonlang-infrastructure
           , pythoneda-shared-pythonlang-artf-domain
-          , pythoneda-shared-pythonlang-artf-infrastructure}:
+          , pythoneda-shared-pythonlang-artf-infrastructure
+          , pythoneda-shared-runtime-secrets-events
+          , pythoneda-shared-runtime-secrets-events-infrastructure
+        }:
           let
             pnameWithUnderscores =
               builtins.replaceStrings [ "-" ] [ "_" ] pname;
@@ -146,6 +181,7 @@
               desc = description;
               inherit homepage pname pythonMajorMinorVersion package
                 version;
+              acmslLicdataArtifactDomain = acmsl-licdata-artifact-domain.version;
               acmslLicdataArtifactEvents = acmsl-licdata-artifact-events.version;
               acmslLicdataArtifactEventsInfrastructure = acmsl-licdata-artifact-events-infrastructure.version;
               pythonedaSharedArtifactEventsInfrastructure = pythoneda-shared-artifact-events-infrastructure.version;
@@ -159,6 +195,10 @@
                 pythoneda-shared-pythonlang-artf-domain.version;
               pythonedaSharedPythonlangArtfInfrastructure =
                 pythoneda-shared-pythonlang-artf-infrastructure.version;
+              pythonedaSharedRuntimeSecretsEvents =
+                pythoneda-shared-runtime-secrets-events.version;
+              pythonedaSharedRuntimeSecretsEventsInfrastructure =
+                pythoneda-shared-runtime-secrets-events-infrastructure.version;
               src = pyprojectTomlTemplate;
             };
             src = pkgs.fetchFromGitHub {
@@ -171,6 +211,7 @@
 
             nativeBuildInputs = with python.pkgs; [ pip poetry-core ];
             propagatedBuildInputs = with python.pkgs; [
+              acmsl-licdata-artifact-domain
               acmsl-licdata-artifact-events
               acmsl-licdata-artifact-events-infrastructure
               pythoneda-shared-artifact-events-infrastructure
@@ -179,6 +220,8 @@
               pythoneda-shared-pythonlang-infrastructure
               pythoneda-shared-pythonlang-artf-domain
               pythoneda-shared-pythonlang-artf-infrastructure
+              pythoneda-shared-runtime-secrets-events
+              pythoneda-shared-runtime-secrets-events-infrastructure
             ];
 
             # pythonImportsCheck = [ pythonpackage ];
@@ -297,6 +340,8 @@
             acmsl-licdata-artifact-infrastructure-for {
               azure-functions =
                 azure-functions.packages.${system}.azure-functions-python39;
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python39;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python39;
               acmsl-licdata-artifact-events-infrastructure =
@@ -313,11 +358,17 @@
                 pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python39;
               pythoneda-shared-pythonlang-artf-infrastructure =
                 pythoneda-shared-pythonlang-artf-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-infrastructure-python39;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python39;
+              pythoneda-shared-runtime-secrets-events-infrastructure =
+                pythoneda-shared-runtime-secrets-events-infrastructure.packages.${system}.pythoneda-shared-runtime-secrets-events-infrastructure-python39;
             };
           acmsl-licdata-artifact-infrastructure-python310 =
             acmsl-licdata-artifact-infrastructure-for {
               azure-functions =
                 azure-functions.packages.${system}.azure-functions-python310;
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python310;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python310;
               acmsl-licdata-artifact-events-infrastructure =
@@ -334,11 +385,17 @@
                 pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python310;
               pythoneda-shared-pythonlang-artf-infrastructure =
                 pythoneda-shared-pythonlang-artf-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-infrastructure-python310;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python310;
+              pythoneda-shared-runtime-secrets-events-infrastructure =
+                pythoneda-shared-runtime-secrets-events-infrastructure.packages.${system}.pythoneda-shared-runtime-secrets-events-infrastructure-python310;
             };
           acmsl-licdata-artifact-infrastructure-python311 =
             acmsl-licdata-artifact-infrastructure-for {
               azure-functions =
                 azure-functions.packages.${system}.azure-functions-python311;
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python311;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python311;
               acmsl-licdata-artifact-events-infrastructure =
@@ -355,11 +412,17 @@
                 pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python311;
               pythoneda-shared-pythonlang-artf-infrastructure =
                 pythoneda-shared-pythonlang-artf-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-infrastructure-python311;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python311;
+              pythoneda-shared-runtime-secrets-events-infrastructure =
+                pythoneda-shared-runtime-secrets-events-infrastructure.packages.${system}.pythoneda-shared-runtime-secrets-events-infrastructure-python311;
             };
           acmsl-licdata-artifact-infrastructure-python312 =
             acmsl-licdata-artifact-infrastructure-for {
               azure-functions =
                 azure-functions.packages.${system}.azure-functions-python312;
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python312;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python312;
               acmsl-licdata-artifact-events-infrastructure =
@@ -376,11 +439,17 @@
                 pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python312;
               pythoneda-shared-pythonlang-artf-infrastructure =
                 pythoneda-shared-pythonlang-artf-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-infrastructure-python312;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python312;
+              pythoneda-shared-runtime-secrets-events-infrastructure =
+                pythoneda-shared-runtime-secrets-events-infrastructure.packages.${system}.pythoneda-shared-runtime-secrets-events-infrastructure-python312;
             };
           acmsl-licdata-artifact-infrastructure-python313 =
             acmsl-licdata-artifact-infrastructure-for {
               azure-functions =
                 azure-functions.packages.${system}.azure-functions-python313;
+              acmsl-licdata-artifact-domain =
+                acmsl-licdata-artifact-domain.packages.${system}.acmsl-licdata-artifact-domain-python313;
               acmsl-licdata-artifact-events =
                 acmsl-licdata-artifact-events.packages.${system}.acmsl-licdata-artifact-events-python313;
               acmsl-licdata-artifact-events-infrastructure =
@@ -397,6 +466,10 @@
                 pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python313;
               pythoneda-shared-pythonlang-artf-infrastructure =
                 pythoneda-shared-pythonlang-artf-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-infrastructure-python313;
+              pythoneda-shared-runtime-secrets-events =
+                pythoneda-shared-runtime-secrets-events.packages.${system}.pythoneda-shared-runtime-secrets-events-python313;
+              pythoneda-shared-runtime-secrets-events-infrastructure =
+                pythoneda-shared-runtime-secrets-events-infrastructure.packages.${system}.pythoneda-shared-runtime-secrets-events-infrastructure-python313;
             };
         };
       });

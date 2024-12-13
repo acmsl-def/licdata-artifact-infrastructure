@@ -26,6 +26,7 @@ homepage = "@homepage@"
 packages = [{include = "@package@"}]
 
 [tool.poetry.dependencies]
+acmsl-licdata-artifact-domain = "^@acmslLicdataArtifactDomain@"
 acmsl-licdata-artifact-events = "^@acmslLicdataArtifactEvents@"
 acmsl-licdata-artifact-events-infrastructure = "^@acmslLicdataArtifactEventsInfrastructure@"
 python = "^@pythonMajorMinorVersion@"
@@ -35,6 +36,8 @@ pythoneda-shared-pythonlang-domain = "^@pythonedaSharedPythonlangDomain@"
 pythoneda-shared-pythonlang-infrastructure = "^@pythonedaSharedPythonlangInfrastructure@"
 pythoneda-shared-pythonlang-artf-domain = "^@pythonedaSharedPythonlangArtfDomain@"
 pythoneda-shared-pythonlang-artf-infrastructure = "^@pythonedaSharedPythonlangArtfInfrastructure@"
+pythoneda-shared-runtime-secrets-events = "^@pythonedaSharedRuntimeSecretsEvents@"
+pythoneda-shared-runtime-secrets-events-infrastructure = "^@pythonedaSharedRuntimeSecretsEventsInfrastructure@"
 
 [build-system]
 requires = ["poetry-core"]
