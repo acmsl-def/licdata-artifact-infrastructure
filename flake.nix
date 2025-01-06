@@ -129,8 +129,8 @@
       let
         org = "acmsl";
         repo = "licdata-artifact-infrastructure";
-        version = "0.0.6";
-        sha256 = "07vhqmjmxh6za4kpjbg1lwhswcs21flldsz07blbakam9hy6169l";
+        version = "0.0.7";
+        sha256 = "12gajsj860glbyy8wlxmhfxa23jw1w6ldrn8wrl418k4dhvxblj7";
         pname = "${org}-${repo}";
         pythonpackage = "org.acmsl.artifact.licdata.infrastructure";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
