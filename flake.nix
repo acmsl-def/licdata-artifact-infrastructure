@@ -228,12 +228,12 @@
 
             unpackPhase = ''
               command cp -r ${src} .
-              sourceRoot=$(ls | grep -v env-vars)
+              sourceRoot=$(command ls | command grep -v env-vars)
               command chmod -R +w $sourceRoot
               command cp ${pyprojectToml} $sourceRoot/pyproject.toml
             '';
 
-            postInstall = ''
+            postInstall = with python.pkgs; ''
               command pushd /build/$sourceRoot
               for f in $(command find . -name '__init__.py' | sed 's ^\./  g'); do
                 if [[ ! -e $out/lib/python${pythonMajorMinorVersion}/site-packages/$f ]]; then
@@ -242,8 +242,18 @@
                 fi
               done
               command popd
-              command mkdir $out/dist
+              command mkdir -p $out/dist $out/deps/flakes
               command cp dist/${wheelName} $out/dist
+              for dep in ${acmsl-licdata-artifact-domain} ${acmsl-licdata-artifact-events} ${acmsl-licdata-artifact-events-infrastructure} ${pythoneda-shared-artifact-events-infrastructure} ${pythoneda-shared-pythonlang-banner} ${pythoneda-shared-pythonlang-domain} ${pythoneda-shared-pythonlang-infrastructure} ${pythoneda-shared-pythonlang-artf-domain} ${pythoneda-shared-pythonlang-artf-infrastructure} ${pythoneda-shared-runtime-secrets-events} ${pythoneda-shared-runtime-secrets-events-infrastructure}; do
+                command cp -r $dep/dist/* $out/deps || true
+                if [ -e $dep/deps ]; then
+                  command cp -r $dep/deps/* $out/deps || true
+                fi
+                METADATA=$dep/lib/python${pythonMajorMinorVersion}/site-packages/*.dist-info/METADATA
+                NAME="$(command grep -m 1 '^Name: ' $METADATA | command cut -d ' ' -f 2)"
+                VERSION="$(command grep -m 1 '^Version: ' $METADATA | command cut -d ' ' -f 2)"
+                command ln -s $dep $out/deps/flakes/$NAME-$VERSION || true
+              done
             '';
 
             meta = with pkgs.lib; {
